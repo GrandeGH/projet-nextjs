@@ -14,6 +14,7 @@ const Carousel = (props) => {
 
   return (
     <section className="embla m-3">
+      <h1>Caroussel</h1>
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
           {slides.map((index) => (

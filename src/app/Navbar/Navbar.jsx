@@ -1,40 +1,80 @@
-import { headers } from 'next/headers'
-import './Navbar.scss'
-import React from 'react'
+'use client';
+
+import './Navbar.scss';
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
+import React, { useState } from 'react';
 
 export default function Navbar() {
-  return (
-    <>
-        <nav class="navbar p-3 navbar-expand-lg navbar-light justidy-content-between">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown link
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
+    const pathname = usePathname();
+    const [darkMode, setDarkMode] = useState(false);
+    const [showSidebar, setShowSidebar] = useState(false);
+
+    // Toggle Dark Mode
+    const toggleDarkMode = () => {
+        setDarkMode(!darkMode);
+        document.documentElement.classList.toggle("dark-mode");
+    };
+
+    // Toggle Sidebar
+    const toggleSidebar = () => {
+        setShowSidebar(!showSidebar);
+    };
+
+    return (
+        <>
+            {/* Navbar */}
+            <nav className={`navbar navbar-expand-lg ${darkMode ? "navbar-dark bg-dark" : "navbar-light bg-light"} shadow`}>
+                <div className="container">
+                    {/* Logo */}
+                    <Link href="/" className="navbar-brand fw-bold">
+                        BOOK<span className="text-primary">STORE</span>
+                    </Link>
+
+                    {/* Menu mobile (toggle) */}
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+
+                    {/* Liens de navigation */}
+                    <div className="collapse navbar-collapse" id="navbarNav">
+                        <ul className="navbar-nav ms-auto">
+                            <li className="nav-item">
+                                <Link href="/" className={`nav-link ${pathname === "/" ? "active text-primary fw-bold" : ""}`}>
+                                    Accueil
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link href="/produits" className={`nav-link ${pathname === "/produits" ? "active text-primary fw-bold" : ""}`}>
+                                    Produits
+                                </Link>
+                            </li>
+                        </ul>
+
+                        {/* Boutons Dark Mode & Sidebar */}
+                        <div className="d-flex align-items-center gap-3 ms-3">
+                            {/* Dark Mode */}
+                            <button onClick={toggleDarkMode} className="btn btn-outline-secondary">
+                                <i className="bi bi-moon-fill"></i>
+                            </button>
+                            {/* Sidebar Favoris */}
+                            <button onClick={toggleSidebar} className="btn btn-outline-warning">
+                                <i className="bi bi-star-fill"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </li>
-            </ul>
-        </div>
-        <div>texttest</div>
-        </nav>
-    </>
-  )
+            </nav>
+
+            {/* Sidebar Favoris */}
+            <div className={`sidebar ${showSidebar ? "active" : ""}`}>
+                <button className="close-btn" onClick={toggleSidebar}>✖</button>
+                <h3>Favoris</h3>
+                <p>Aucun favori ajouté...</p>
+            </div>
+
+            {/* Overlay pour fermer le sidebar */}
+            {showSidebar && <div className="overlay" onClick={toggleSidebar}></div>}
+        </>
+    );
 }

@@ -1,0 +1,55 @@
+.allCard {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+    gap: 10px;
+}
+
+.cardi {
+    background-color: white;
+    width: 40%;
+    max-width: 220px;
+    height: 250px;
+    margin: auto;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h3 {
+    text-align: center;
+    display: block;
+    width: 170px;
+    font-size: 15px;
+    white-space: nowrap; /* Empêche le texte de se décomposer sur plusieurs lignes */
+    overflow: hidden;    /* Cache la partie excédentaire du texte */
+    text-overflow: ellipsis; /* Affiche les points de suspension à la fin */
+}
+
+.btnFav {
+    width: 35px;
+    height: 35px;
+    justify-content: center;
+    display: flex;
+}
+
+.btnFav:focus {
+    outline: none;
+    box-shadow: none; /* Si tu veux aussi enlever l'ombre de focus */
+}
+
+img {
+    width: 100%;
+    max-width: 110px;
+    max-height: 160px;
+}
+
+// .allCard:hover {
+//     img {
+//         transform: scale(1.1);
+//         transition: 0.5s;
+//     }
+// }
