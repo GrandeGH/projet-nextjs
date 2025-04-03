@@ -33,14 +33,14 @@ useEffect(() => {
     if(loading) {
         return (
             <div>
-                <h1>Loading...</h1> 
+                <h1>Chargement...</h1> 
             </div>
         )
     }
     if(error) {
         return (
             <div>
-                <h1>Le produit n'est pas trouvé...</h1>
+                <h1>Le produit introuvable...</h1>
             </div>
         )
     }
@@ -49,9 +49,9 @@ useEffect(() => {
         <>
   
         <section className="container mt-5">
-            <h1 className="titreDetails mb-4 text-center">{book.title}</h1>
+            <h3 className="titreDetails mb-4 text-center">{book.title}</h3>
 
-            <div className="row g-4">
+            <div className="row g-5">
                 <div className="col-md-4 d-flex justify-content-center">
                     <img 
                         src={book.image_url} 

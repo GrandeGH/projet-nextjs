@@ -1,0 +1,25 @@
+.choix-section {
+    text-align: center;
+
+    h2 {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .card {
+        max-width: 260px;
+        margin: auto;
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+        &:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        // .rating {
+        //     font-weight: bold;
+        //     color: #ffcc00;
+        // }
+    }
+}

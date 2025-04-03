@@ -1,11 +1,11 @@
 'use client'
 
 import { Geist, Geist_Mono } from "next/font/google";
-import axios from "axios";
 import { useState, useEffect } from "react";
 
 import Navbar from "./Navbar/Navbar";
 import Footer from "./Footer/Footer";
+import Sidebar from "./Sidebar/Sidebar";
 import StoreProvider from "./StoreProvider";
 import "bootstrap/dist/css/bootstrap.min.css"; 
 import "../../node_modules/bootstrap-icons/font/bootstrap-icons.css";
@@ -25,18 +25,17 @@ const geistMono = Geist_Mono({
 
 
 export default function RootLayout({ children }) {
-  const [books, setBooks] = useState([]);
 
 
   
   return (
     <html lang="fr">
-      {/* <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}> */}
+     
       <body
         className={`antialiased`}>
           <StoreProvider>
               <Navbar/>
+              <Sidebar/>
                  {children}
               <Footer />
           </StoreProvider>

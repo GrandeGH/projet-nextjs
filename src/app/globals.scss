@@ -1,9 +1,37 @@
-* { 
-  box-sizing: border-box;
-  // outline: 1px solid red;
-}
-
+/* Light Mode */
 body {
   background-color: rgb(255, 255, 255);
+  color: #1e1e1e; /* Texte sombre par défaut */
 }
 
+/* Dark Mode */
+
+
+html.dark-mode body {
+  background-color: #333333;
+  color: white; 
+}
+
+html.dark-mode h2, html.dark-mode h3, html.dark-mode h4, html.dark-mode h5, html.dark-mode p {
+  color: white; /* Texte blanc spécifique aux titres et paragraphes */
+}
+
+html.dark-mode .card, html.dark-mode .sidebar {
+  background-color: #4d4d4d;
+}
+
+html.dark-mode .navbar {
+  background-color: #333;
+}
+
+html.dark-mode .footer {
+  background-color: #333 !important;
+}
+
+html.dark-mode .carousel-description {
+  color: white !important;
+}
+
+a {
+  text-decoration: none;
+}

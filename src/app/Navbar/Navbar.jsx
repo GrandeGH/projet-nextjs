@@ -4,11 +4,13 @@ import './Navbar.scss';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import React, { useState } from 'react';
+import Sidebar from '../Sidebar/Sidebar';
 
 export default function Navbar() {
     const pathname = usePathname();
     const [darkMode, setDarkMode] = useState(false);
     const [showSidebar, setShowSidebar] = useState(false);
+    const [isNavOpen, setIsNavOpen] = useState(false);
 
     // Toggle Dark Mode
     const toggleDarkMode = () => {
@@ -19,6 +21,11 @@ export default function Navbar() {
     // Toggle Sidebar
     const toggleSidebar = () => {
         setShowSidebar(!showSidebar);
+    };
+
+    // Toggle Navbar Mobile
+    const toggleNavbar = () => {
+        setIsNavOpen(!isNavOpen);
     };
 
     return (
@@ -32,12 +39,12 @@ export default function Navbar() {
                     </Link>
 
                     {/* Menu mobile (toggle) */}
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <button className="navbar-toggler" type="button" onClick={toggleNavbar}>
                         <span className="navbar-toggler-icon"></span>
                     </button>
 
                     {/* Liens de navigation */}
-                    <div className="collapse navbar-collapse" id="navbarNav">
+                    <div className={`collapse navbar-collapse ${isNavOpen ? "show" : ""}`} id="navbarNav">
                         <ul className="navbar-nav ms-auto">
                             <li className="nav-item">
                                 <Link href="/" className={`nav-link ${pathname === "/" ? "active text-primary fw-bold" : ""}`}>
@@ -67,11 +74,7 @@ export default function Navbar() {
             </nav>
 
             {/* Sidebar Favoris */}
-            <div className={`sidebar ${showSidebar ? "active" : ""}`}>
-                <button className="close-btn" onClick={toggleSidebar}>✖</button>
-                <h3>Favoris</h3>
-                <p>Aucun favori ajouté...</p>
-            </div>
+            <Sidebar showSidebar={showSidebar} toggleSidebar={toggleSidebar} />
 
             {/* Overlay pour fermer le sidebar */}
             {showSidebar && <div className="overlay" onClick={toggleSidebar}></div>}
