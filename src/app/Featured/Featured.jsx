@@ -35,10 +35,8 @@ export default function Featured() {
     return (
       
         <div className="container my-4">
-        {/* Titre centré */}
         <h3 className="text-center mb-4">Les mieux notés</h3>
       
-        {/* Grille Bootstrap */}
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
           {featuredBooks.map((book, index) => (
             <Link href={`/produits/${book.id}`} passHref>
@@ -48,7 +46,8 @@ export default function Featured() {
                 <img
                   src={book.image_url}
                   alt={book.title}
-                  className="card-img-top mx-auto d-block"                />
+                  className="card-img-top mx-auto d-block"                
+                  />
                 <div className="card-body">
                   <p className="card-title text-truncate fw-bold" style={{ maxWidth: "220px", margin: "auto" }}>
                     {book.title}

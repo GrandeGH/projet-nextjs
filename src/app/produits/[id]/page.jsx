@@ -15,7 +15,6 @@ export default function Details() {
     
     // const router = useRouter();
 
-
 useEffect(() => {
     axios.get(`https://example-data.draftbit.com/books/${id}`)
     .then((reponse) => { 
@@ -47,29 +46,29 @@ useEffect(() => {
 
     return(
         <>
-  
-        <section className="container mt-5">
-            <h3 className="titreDetails mb-4 text-center">{book.title}</h3>
+            <section className="container mt-5">
+                <h3 className="titreDetails mb-4 text-center">{book.title}</h3>
 
-            <div className="row g-5">
-                <div className="col-md-4 d-flex justify-content-center">
-                    <img 
-                        src={book.image_url} 
-                        alt={book.title} 
-                    />
+                <div className="row g-5">
+                    <div className="col-md-4 d-flex justify-content-center">
+                        <img 
+                            src={book.image_url} 
+                            alt={book.title} 
+                            loading="lazy"
+                        />
+                    </div>
+                    <div className="col-md-8">
+                        <p><strong>Auteur :</strong> {book.authors}</p>
+                        <p><strong>Genre(s) :</strong> {book.genres}</p>
+                        <p><strong>Nombre de pages :</strong> {book.num_pages}</p>
+                        <p><strong>Format :</strong> {book.format}</p>
+                    </div>
                 </div>
-                <div className="col-md-8">
-                    <p><strong>Auteur :</strong> {book.authors}</p>
-                    <p><strong>Genre(s) :</strong> {book.genres}</p>
-                    <p><strong>Nombre de pages :</strong> {book.num_pages}</p>
-                    <p><strong>Format :</strong> {book.format}</p>
+                <div className="my-5">
+                    <p className="description">Description</p>
+                    <p className="text-justify">{book.description || "Aucune description disponible."}</p>
                 </div>
-            </div>
-            <div className="my-5">
-                <p className="description">Description</p>
-                <p className="text-justify">{book.description || "Aucune description disponible."}</p>
-            </div>
-        </section>
+            </section>
         </>
     )
 

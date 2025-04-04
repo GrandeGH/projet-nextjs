@@ -35,3 +35,10 @@ html.dark-mode .carousel-description {
 a {
   text-decoration: none;
 }
+
+// img
+.card-img-top {
+  width: 100%;
+  height: 300px; // ou auto si tu veux garder les proportions
+  object-fit: cover;
+}

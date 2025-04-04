@@ -3,6 +3,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Sidebar from "../Sidebar/Sidebar";
 import './page.scss';
 
 export default function Produits() {
@@ -21,10 +22,9 @@ export default function Produits() {
 
     const handleFavoriteClick = (index, item) => {
         const newFavorites = [...favorites];
-        if (newFavorites.includes(item)) {
-            setFavorites(newFavorites.filter(fav => fav !== item)); // Retirer des favoris
-        } else {
-            setFavorites([...newFavorites, item]); // Ajouter aux favoris
+        if (!newFavorites.includes(item)) {
+            setFavorites([...newFavorites, item]);
+            setShowSidebar(true); // ouvrir automatiquement
         }
 
         const newFavoriteButtons = [...favoriteButtons];
@@ -34,8 +34,19 @@ export default function Produits() {
 
     const removeFavorite = (index) => {
         const updatedFavorites = [...favorites];
-        updatedFavorites.splice(index, 1); // Retirer l'élément à l'index donné
-        setFavorites(updatedFavorites); // Mettre à jour les favoris
+        const removedItem = updatedFavorites[index];
+    
+        // Supprimer des favoris
+        updatedFavorites.splice(index, 1);
+        setFavorites(updatedFavorites);
+    
+        // Trouver l'index du produit dans le tableau data
+        const originalIndex = data.findIndex(book => book.id === removedItem.id);
+        if (originalIndex !== -1) {
+            const updatedFavoriteButtons = [...favoriteButtons];
+            updatedFavoriteButtons[originalIndex] = false;
+            setFavoriteButtons(updatedFavoriteButtons);
+        }
     };
 
     // Sidebar
@@ -44,6 +55,8 @@ export default function Produits() {
         setShowSidebar(!showSidebar);
       };
 
+
+    // Axios
     useEffect(() => {
         axios.get("https://example-data.draftbit.com/books")
             .then(response => {
@@ -63,9 +76,28 @@ export default function Produits() {
 
     useEffect(() => {
         if (data) {
-            setFavoriteButtons(new Array(data.length).fill(false));
+            const storedFavorites = localStorage.getItem('favorites');
+            const parsedFavorites = storedFavorites ? JSON.parse(storedFavorites) : [];
+    
+            const buttonsState = data.map((book) =>
+                parsedFavorites.some(fav => fav.id === book.id)
+            );
+    
+            setFavoriteButtons(buttonsState);
         }
     }, [data]);
+
+    // Conserver
+    useEffect(() => {
+        const storedFavorites = localStorage.getItem('favorites');
+        const parsedFavorites = storedFavorites ? JSON.parse(storedFavorites) : [];
+        setFavorites(parsedFavorites);
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+    }, [favorites]);
+    
 
     const handleSearch = (book) => {
         const query = searchQuery.toLowerCase();
@@ -137,9 +169,9 @@ export default function Produits() {
             </div>
 
             {/* Sidebar des produits favoris */}
-            <div className={`sidebar ${favorites.length > 0 ? "active" : ""}`}>
+            <div className={`sidebar ${showSidebar ? "active" : ""}`}>
                 <button className="close-btn" onClick={() => toggleSidebar()}>✖</button>
-                <h3 className="mb-4">Vos favoris</h3>
+                <h2 className="mb-4">Vos favoris</h2>
                 {favorites.length === 0 ? (
                     <p>Aucun favori ajouté...</p>
                 ) : (
@@ -148,10 +180,9 @@ export default function Produits() {
                         <img src={item.image_url} alt={item.title} style={{ width: '50px', height: 'auto' }} />
                         <span>{item.title}</span>
                         <button 
-                        className="btn-remove" 
-                        onClick={() => removeFavorite(index)}
-                        >
-                        Supprimer
+                        className="btn btn-primary ms-2 btn-remove " 
+                        onClick={() => removeFavorite(index)}>
+                            Supprimer
                         </button>
                     </div>
                     ))

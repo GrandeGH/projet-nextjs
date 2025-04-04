@@ -9,7 +9,6 @@ import Sidebar from "./Sidebar/Sidebar";
 import StoreProvider from "./StoreProvider";
 import "bootstrap/dist/css/bootstrap.min.css"; 
 import "../../node_modules/bootstrap-icons/font/bootstrap-icons.css";
-import './_variables.scss'
 import './globals.scss'
 
 

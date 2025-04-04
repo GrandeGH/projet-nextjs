@@ -21,7 +21,7 @@ export default function Choix() {
         <section className="choix-section container my-5">
             <h2 className="text-center mb-4">Sélection du Moment</h2>
             {selectedItems.length === 0 ? (
-                <p className="text-center">Chargement des éléments...</p>
+                <p className="text-center">Chargement...</p>
             ) : (
                 <div className="row justify-content-center gap-4">
                 {selectedItems.map((item, i) => (
