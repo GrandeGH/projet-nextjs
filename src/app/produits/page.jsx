@@ -122,9 +122,13 @@ export default function Produits() {
     }
 
     return (
-        <div className="container mt-4">
+        <div className="produits container">
+            <div className=" d-flex justify-content-center">
+             <h2>Nos produits</h2>
+            </div>
             {/* Barre de recherche et filtres */}
-            <div className="d-flex justify-content-between mb-4">
+            <div className="d-flex mt-4 justify-content-between mb-4">
+                
                 <input
                     type="text"
                     className="form-control w-50"

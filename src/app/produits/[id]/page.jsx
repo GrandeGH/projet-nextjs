@@ -46,7 +46,7 @@ useEffect(() => {
 
     return(
         <>
-            <section className="container mt-5">
+            <section className="container">
                 <h3 className="titreDetails mb-4 text-center">{book.title}</h3>
 
                 <div className="row g-5">

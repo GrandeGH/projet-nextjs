@@ -43,7 +43,7 @@ export default function Navbar() {
                         <span className="navbar-toggler-icon"></span>
                     </button>
 
-                    {/* Liens de navigation */}
+                    {/* Lien de navigation */}
                     <div className={`collapse navbar-collapse ${isNavOpen ? "show" : ""}`} id="navbarNav">
                         <ul className="navbar-nav ms-auto">
                             <li className="nav-item">
@@ -58,13 +58,13 @@ export default function Navbar() {
                             </li>
                         </ul>
 
-                        {/* Boutons Dark Mode & Sidebar */}
+                        {/* Boutons dark mode & sidebar */}
                         <div className="d-flex align-items-center gap-3 ms-3">
-                            {/* Dark Mode */}
+                            {/* Dark mode */}
                             <button onClick={toggleDarkMode} className="btn btn-outline-secondary">
                                 <i className="bi bi-moon-fill"></i>
                             </button>
-                            {/* Sidebar Favoris */}
+                            {/* Sidebar favoris */}
                             <button onClick={toggleSidebar} className="btn btn-outline-warning">
                                 <i className="bi bi-star-fill"></i>
                             </button>

@@ -6,11 +6,10 @@
     height: 100vh;
     background-color: white;
     border-left: blue 2px solid;
-    // border: 3px;
     box-shadow: -3px 0 5px rgba(0, 0, 0, 0.2);
     padding: 20px;
     transition: right 0.3s ease-in-out;
-    z-index: 1000;
+    z-index: 1500;
 }
 
 .sidebar.active {
@@ -36,7 +35,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent */
+    background-color: rgba(0, 0, 0, 0.5); 
     z-index: 999;
   }
 

@@ -37,7 +37,7 @@ export default function ProductCarousel() {
   }
 
   return (
-    <div className="carousel-container my-4">
+    <div className="carousel-container mb-3 mt-5">
     <Carousel>
       {products.map((product) => (
         <Carousel.Item key={product.id}>
